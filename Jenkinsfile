@@ -24,6 +24,7 @@ pipeline {
              sh 'php artisan migrate'
              sh 'php artisan db:seed'
              sh 'php artisan key:generate'
+      }   
 
      stage('Execute Unit Tests') {
       steps {
@@ -33,6 +34,6 @@ pipeline {
       }
     }
   }
- }
+ 
 
 
