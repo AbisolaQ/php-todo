@@ -69,7 +69,7 @@ pipeline {
                     "files": [
                       {
                        "pattern": "php-todo.zip",
-                       "target": "<name-of-artifact-repository>/php-todo",
+                       "target": "admin/php-todo",
                        "props": "type=zip;status=ready"
 
                        }
@@ -82,6 +82,12 @@ pipeline {
 
         }
         
+        stage ('Deploy to Dev Environment') {
+    steps {
+    build job: 'ansible-project/main', parameters: [[$class: 'StringParameterValue', name: 'env', value: 'dev']], propagate: false, wait: true
+    }
+  }
+
       }
     }
   
